@@ -85,5 +85,22 @@ export const CardRosel = styled.div`
 
 export const Carousel = styled.div`
   display: flex;
+  position: relative;
   perspective: 1000px;
+  
+    .Cproject{
+      position: absolute;
+    }
+
+    .middle{
+      position: absolute;
+    }
+    .right{
+      position: absolute;
+      right: 40%;
+    }
+    .left{
+      position: absolute;
+      left: 40%;  
+    }
 `

@@ -8,8 +8,9 @@ interface CardProjectProps{
     Title:string,
     Stacks: StackIcon[],
     Image:string,
-    Description?:string
-    className?:any
+    Description?:string,
+    className?:any,
+    Id?:any
 }
 
 export default function CardProject(props:CardProjectProps) {
@@ -20,7 +21,7 @@ export default function CardProject(props:CardProjectProps) {
   }
 
   return (
-    <Card className={props.className}>
+    <Card className={props.className} id={props.Id}>
         <CardTitle className="cpTitle">
             <Title>{props.Title}</Title>
         </CardTitle>

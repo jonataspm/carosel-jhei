@@ -11,6 +11,7 @@ function App() {
 
   const [actualPosition, setPosition] = useState(0);
 
+  
   const cardData = [
     { Title: 'Vidinha', Stacks: stacklist, Image: 'https://pps.whatsapp.net/v/t61.24694-24/390347512_2296944013835219_8458101779531385939_n.jpg?ccb=11-4&oh=01_AdRvR_PhKFM-xtsc72VhAMxrA7iFWv6amgtGxIO99Jm5Jg&oe=65456BC4&_nc_sid=000000&_nc_cat=101' },
     { Title: 'Joji', Stacks: stacklist, Image: 'https://pps.whatsapp.net/v/t61.24694-24/384714803_996512034953781_8979789831187215676_n.jpg?ccb=11-4&oh=01_AdRjr0fzk7ezSGWFGZmR92ojUpROhBC5s0WUV1q2oKbPoA&oe=65469F2C&_nc_sid=000000&_nc_cat=109' },
@@ -32,38 +33,60 @@ function App() {
   const currentCard = getCard(actualPosition);
   const nextCard = getCard(actualPosition + 1);
 
+  const changeClass = (value:number) => {
+    
+    const previousId = getCard(actualPosition - 1);
+    const currentId = getCard(actualPosition);
+    const nextId = getCard(actualPosition + 1);
+
+    const previousCard = document.getElementById(previousId);
+    const currentCard =  document.getElementById(currentId);
+    const nextCard =  document.getElementById(nextId);
+    
+    if(value > actualPosition){
+
+      previousCard?.classList.replace("left","middle");
+      currentCard?.classList.replace("middle","right");
+      nextCard?.classList.replace("right","rest")
+      setPosition(value);
+
+      previousId = getCard(actualPosition - 1);
+      previousCard = document.getElementById(previousId);
+      previousCard?.classList.add("left");
+    }
+    else{
+
+      previousCard?.classList.replace("left","rest");
+      currentCard?.classList.replace("middle","left");
+      nextCard?.classList.replace("right","middle")
+      setPosition(value);
+
+      nextId = getCard(actualPosition + 1);
+      nextCard = document.getElementById(nextId);
+      nextCard?.classList.add("right");
+    }
+    
+   
+  }
+
   return (
     <div className="App">
       <CardRosel>
-        <NextPrevBtn onClick={() => setPosition(actualPosition - 1)}>{'Prev'}</NextPrevBtn>
+        <NextPrevBtn onClick={() => changeClass(actualPosition - 1)}>{'Prev'}</NextPrevBtn>
         <Carousel>
-          {previousCard && (
-            <CardProject
-              Title={previousCard.Title}
-              Stacks={previousCard.Stacks}
-              Image={previousCard.Image}
-              className="card left"
-            />
-          )}
-          {currentCard && (
-            <CardProject
-              Title={currentCard.Title}
-              Stacks={currentCard.Stacks}
-              Image={currentCard.Image}
-              className="card center"
-            />
-          )}
-          {nextCard && (
-            <CardProject
-              Title={nextCard.Title}
-              Stacks={nextCard.Stacks}
-              Image={nextCard.Image}
-              className="card right"
-            />
-          )}
+        {cardData.map((item, index) => (
+          <CardProject
+            key={index}
+            Id={index}
+            className={'Cproject'}
+            Title={item.Title}
+            Stacks={item.Stacks}
+            Image={item.Image}
+          />
+        ))}
         </Carousel>
         
-        <NextPrevBtn onClick={() => setPosition(actualPosition + 1)}>{'Next'}</NextPrevBtn>
+        <NextPrevBtn onClick={() => changeClass(actualPosition + 1)}>{'Next'}</NextPrevBtn>
       </CardRosel>
     </div>
   );
