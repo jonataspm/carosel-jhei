@@ -10,6 +10,7 @@ import
 } from "react-icons/si";
 import { FaQuestionCircle } from 'react-icons/fa';
 
+
 interface IconName {
     [key: string]: IconType
 }

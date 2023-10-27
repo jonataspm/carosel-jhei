@@ -46,8 +46,8 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   width: min-content;
-background-color: white;
-transform-origin: 50% 50%;
+  background-color: white;
+  transform-origin: 50% 50%;
 `
 export const CardTitle = styled.div`
  display: flex;
@@ -65,24 +65,31 @@ export const CardFooter = styled.div`
     cursor: pointer;
   }
 `
-export const NextPrevBtn = styled.div`
- background-color: #707072;
- height: 40px;
- width: 40px;
- padding: 20px;
- border-radius: 100px;
- align-items: center;
- justify-content: center;
- display: flex;
- z-index: 10;
-margin: 0 200px;
-`
 
 export const CardRosel = styled.div`
  display: flex;
  flex-direction: row;
  align-items: center;
 
+ .btnPrevNext{
+  cursor: pointer;
+
+  color: #07d607;
+  
+  height: 40px;
+  width: 40px;
+ 
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  z-index: 10;
+  margin: 0 200px;
+  transition: ease-in-out 0.5s;
+  &:hover{
+    color: #008800;
+    transform: scale(1.3);
+  }
+}
 
 `
 
@@ -108,14 +115,26 @@ z-index: 5;
     .middle{
       position: absolute;
       z-index: 4;
+      
+      &:hover{
+        transform: scale(1.02);
+        box-shadow: 1px 1px 10px #82f19a;
+      }
     }
+
     .right{
       position: absolute;
       left: none;
       transform: translate(250px) scale(0.87) rotateY(-30deg);
       z-index: 3;
       opacity: 50%;
+
+      &:hover{
+        transform: translate(250px) scale(0.9) rotateY(-30deg);
+        box-shadow: 1px 1px 10px #82f19a;
+      }
     }
+
     .left{
       position: absolute;
 
@@ -123,7 +142,13 @@ z-index: 5;
       transform: translate(-250px) scale(0.87) rotateY(30deg);
       z-index: 3;
       opacity: 50%;
+
+      &:hover{
+        transform: translate(-250px) scale(0.90) rotateY(30deg);
+        box-shadow: 1px 1px 10px #82f19a;
+      }
     }
+    
     .rest{
       opacity: 0;
       position: absolute;
