@@ -7,7 +7,8 @@ import { CardRosel, Carousel, NextPrevBtn } from './components/styleds/styleds';
 function App() {
   const stack1 = new StackIcon('Angular', 'red');
   const stack2 = new StackIcon('Dart', 'blue');
-  const stacklist = [stack1, stack2];
+  const stack3 = new StackIcon('Javascript', 'orange');
+  const stacklist = [stack1, stack2,stack3];
 
   const [actualPosition, setPosition] = useState(0);
 

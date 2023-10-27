@@ -101,17 +101,18 @@ z-index: 5;
       right: none;
 
       transition: all 0.5s ease-in;
+      transform-style: preserve-3d;
+      transform-origin: center;
     }
 
     .middle{
       position: absolute;
-
       z-index: 4;
     }
     .right{
       position: absolute;
       left: none;
-      transform: translate(300px);
+      transform: translate(250px) scale(0.87) rotateY(-30deg);
       z-index: 3;
       opacity: 50%;
     }
@@ -119,9 +120,8 @@ z-index: 5;
       position: absolute;
 
       left: none; 
-      transform: translate(-300px);
+      transform: translate(-250px) scale(0.87) rotateY(30deg);
       z-index: 3;
-
       opacity: 50%;
     }
     .rest{
