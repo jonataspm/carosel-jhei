@@ -46,7 +46,8 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   width: min-content;
-
+background-color: white;
+transform-origin: 50% 50%;
 `
 export const CardTitle = styled.div`
  display: flex;
@@ -73,6 +74,8 @@ export const NextPrevBtn = styled.div`
  align-items: center;
  justify-content: center;
  display: flex;
+ z-index: 10;
+margin: 0 200px;
 `
 
 export const CardRosel = styled.div`
@@ -84,23 +87,52 @@ export const CardRosel = styled.div`
 `
 
 export const Carousel = styled.div`
+z-index: 5;
   display: flex;
   position: relative;
   perspective: 1000px;
-  
+  align-items: center;
+  justify-content: center;
+
+
     .Cproject{
       position: absolute;
+      left: none;
+      right: none;
+
+      transition: all 0.5s ease-in;
     }
 
     .middle{
       position: absolute;
+
+      z-index: 4;
     }
     .right{
       position: absolute;
-      right: 40%;
+      left: none;
+      transform: translate(300px);
+      z-index: 3;
+      opacity: 50%;
     }
     .left{
       position: absolute;
-      left: 40%;  
+
+      left: none; 
+      transform: translate(-300px);
+      z-index: 3;
+
+      opacity: 50%;
     }
+    .rest{
+      opacity: 0;
+      position: absolute;
+      left: none;
+      right: none;
+      z-index: 2;
+    }
+
+
+
+
 `

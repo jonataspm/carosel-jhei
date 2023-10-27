@@ -23,50 +23,47 @@ function App() {
 
   const totalCards = cardData.length;
   
-  const getCard = (index:number) => {
-    if (totalCards === 0) return null;
-    const normalizedIndex = (index % totalCards + totalCards) % totalCards;
-    return cardData[normalizedIndex];
+  const getId = (index:number) => {
+    if (totalCards === 0) return 0;
+    else if (index == -1) return totalCards-1;
+    else if (index == totalCards) return 0;
+    else
+      return index;
   };
 
-  const previousCard = getCard(actualPosition - 1);
-  const currentCard = getCard(actualPosition);
-  const nextCard = getCard(actualPosition + 1);
-
   const changeClass = (value:number) => {
-    
-    const previousId = getCard(actualPosition - 1);
-    const currentId = getCard(actualPosition);
-    const nextId = getCard(actualPosition + 1);
+    debugger;
+    let previousId = getId(actualPosition - 1);
+    let currentId = actualPosition;
+    let nextId = getId(actualPosition + 1);
 
-    const previousCard = document.getElementById(previousId);
-    const currentCard =  document.getElementById(currentId);
-    const nextCard =  document.getElementById(nextId);
+    let previousCard = document.getElementById(previousId.toString());
+    let currentCard =  document.getElementById(currentId.toString());
+    let nextCard =  document.getElementById(nextId.toString());
     
     if(value > actualPosition){
 
-      previousCard?.classList.replace("left","middle");
-      currentCard?.classList.replace("middle","right");
       nextCard?.classList.replace("right","rest")
-      setPosition(value);
+      currentCard?.classList.replace("middle","right");
+      previousCard?.classList.replace("left","middle");
+      setPosition(previousId);
 
-      previousId = getCard(actualPosition - 1);
-      previousCard = document.getElementById(previousId);
-      previousCard?.classList.add("left");
+      previousId = getId(previousId - 1);
+      previousCard = document.getElementById(previousId.toString());
+      previousCard?.classList.replace("rest","left");
     }
     else{
 
       previousCard?.classList.replace("left","rest");
       currentCard?.classList.replace("middle","left");
       nextCard?.classList.replace("right","middle")
-      setPosition(value);
+      setPosition(nextId);
 
-      nextId = getCard(actualPosition + 1);
-      nextCard = document.getElementById(nextId);
-      nextCard?.classList.add("right");
+      nextId = getId(nextId + 1);
+      nextCard = document.getElementById(nextId.toString());
+      nextCard?.classList.replace("rest","right");
     }
     
-   
   }
 
   return (
@@ -78,7 +75,7 @@ function App() {
           <CardProject
             key={index}
             Id={index}
-            className={'Cproject'}
+            className={ index == 0 ? 'Cproject middle' : index == 1 ? 'Cproject right': index == totalCards-1 ? 'Cproject left': 'Cproject rest'}
             Title={item.Title}
             Stacks={item.Stacks}
             Image={item.Image}
@@ -93,3 +90,4 @@ function App() {
 }
 
 export default App;
+
