@@ -1,16 +1,16 @@
 import { Button, CardActions } from "@mui/material";
 import { StackIcon } from "./stack";
-import { DivIcons } from "./devincon";
+import { DivIcons, DivIconsColor } from "./devincon";
 import { Card, CardFooter, CardTitle, Paragraph, StackName, Stacks, Title, CardImg } from "../../styleds/styleds";
 
 
 interface CardProjectProps{
     Title:string,
-    Stacks: StackIcon[],
+    Stacks: any[],
     Image:string,
-    Description?:string,
     className?:any,
     Id?:any
+    Link:string,
 }
 
 export default function CardProject(props:CardProjectProps) {
@@ -20,6 +20,7 @@ export default function CardProject(props:CardProjectProps) {
     return <Icon />;
   }
 
+
   return (
     <Card className={props.className} id={props.Id}>
         <CardTitle className="cpTitle">
@@ -27,7 +28,7 @@ export default function CardProject(props:CardProjectProps) {
         </CardTitle>
         <Stacks className="cpName">
           {props.Stacks.map((stack, index) => (
-            <div className="IndividualStack" key={index} style={{backgroundColor: stack.Color,}}>
+            <div className="IndividualStack" key={index} style={{backgroundColor: DivIconsColor[stack.Name] || DivIconsColor.default}}>
               <StackElement name={stack.Name} />
               <StackName>{stack.Name}</StackName>
             </div>
@@ -38,7 +39,7 @@ export default function CardProject(props:CardProjectProps) {
         </CardImg>
         
         <CardFooter className="cpFooter">
-          <Paragraph> read more...</Paragraph> 
+          <a href={props.Link}><Paragraph> read more...</Paragraph> </a>
         </CardFooter>
     </Card>
   );

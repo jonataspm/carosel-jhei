@@ -49,3 +49,42 @@ export const DivIcons: IconName = {
     Jenkins: SiJenkins,
     default: FaQuestionCircle
   }
+
+
+  interface IconNameColor {
+    [key: string]: string
+}
+  export const DivIconsColor: IconNameColor = {
+    React: '#1273DE', 
+    Angular: '#de3b12', 
+    Angularjs: '#de3b12', 
+    Javascript: '#FCBD00', 
+    Typescript: '#1273DE', 
+    Sonarlint: '#c50101', 
+    Jquery: '#FCBD00', 
+    Html: '#de3b12',
+    Css: '#128cde', 
+    Swagger: '#069631',
+    Csharp: '#8c12de',
+    Dotnet: '#9312de',
+    Ruby: '#d42b25', 
+    Php: '#3e3cb3', 
+    C: '#2b68ad', 
+    Cplusplus: '#2b68ad', 
+    Go: '#128cde', 
+    Goland: '#128cde',
+    Dart:'#128cde',
+    Microsoftsqlserver: '#d42b25', 
+    Sqlite: '#2b68ad', 
+    Postgresql: '#2b68ad', 
+    Mongodb: '#069631', 
+    Redis: '#d42b25',
+    Graphql: '#d46b25', 
+    Postman: '#d42b25',
+    Docker: '#2b68ad', 
+    Kubernetes: '#2b68ad', 
+    Amazonaws: '#d46b25', 
+    Azuredevops: '#1273DE', 
+    Jenkins: '#d42b25',
+    default: '#1273DE'
+  }

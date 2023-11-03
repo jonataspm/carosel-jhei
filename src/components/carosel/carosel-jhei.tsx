@@ -3,6 +3,7 @@ import { CardRosel, Carousel } from '../styleds/styleds';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import CardProject from '../Icons/cardKnowledge';
 import { StackIcon } from '../Icons/cardKnowledge/stack';
+import { GetRepositories } from '../../api/githubApi';
 
 export default function CaroselJhei() {
 
@@ -13,7 +14,8 @@ export default function CaroselJhei() {
 
     const [actualPosition, setPosition] = useState(0);
 
-
+    const reposData = GetRepositories('jonataspm');
+    
     const cardData = [
         { Title: 'Vidinha', Stacks: stacklist, Image: 'https://pps.whatsapp.net/v/t61.24694-24/390347512_2296944013835219_8458101779531385939_n.jpg?ccb=11-4&oh=01_AdRvR_PhKFM-xtsc72VhAMxrA7iFWv6amgtGxIO99Jm5Jg&oe=65456BC4&_nc_sid=000000&_nc_cat=101' },
         { Title: 'Joji', Stacks: stacklist, Image: 'https://pps.whatsapp.net/v/t61.24694-24/384714803_996512034953781_8979789831187215676_n.jpg?ccb=11-4&oh=01_AdRjr0fzk7ezSGWFGZmR92ojUpROhBC5s0WUV1q2oKbPoA&oe=65469F2C&_nc_sid=000000&_nc_cat=109' },
@@ -73,14 +75,17 @@ export default function CaroselJhei() {
         <CardRosel>
             <FaAngleLeft className='btnPrevNext left' onClick={() => changeClass(actualPosition - 1)}>{'Prev'}</FaAngleLeft>
             <Carousel>
-                {cardData.map((item, index) => (
+                {reposData.map((item, index) => (
                     <CardProject
                         key={index}
                         Id={index}
                         className={index === 0 ? 'Cproject middle' : index === 1 ? 'Cproject right' : index === totalCards - 1 ? 'Cproject left' : 'Cproject rest'}
-                        Title={item.Title}
-                        Stacks={item.Stacks}
-                        Image={item.Image} />
+                        Title={item.name}
+                        Stacks={item.languages.stacks}
+                        Image={item.image.logo} 
+                        Link= {item.url}
+                        />
+                        
                 ))}
             </Carousel>
             <FaAngleRight className='btnPrevNext right' onClick={() => changeClass(actualPosition + 1)}>{'Next'}</FaAngleRight>
