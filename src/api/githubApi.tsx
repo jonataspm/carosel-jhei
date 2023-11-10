@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const accessToken = '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';
+const accessToken = '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';
 
 
 type resultProps = {
@@ -41,8 +41,10 @@ export const GetRepositories = (profileLink: string) => {
                     languages:{language_url: repo.languages_url},
                     image:{contents_url: repo.contents_url}
                 }));
+                
+                var updaterepositoriesData = repositoriesData.filter(repo => repo.name !== profileLink);
 
-                for (const repo of repositoriesData) {
+                for (const repo of updaterepositoriesData) {
                     const languagesResponse = await fetch(repo.languages.language_url,{
                         headers: {
                             Authorization: `token ${accessToken}`
@@ -62,7 +64,7 @@ export const GetRepositories = (profileLink: string) => {
                         repo.image.logo = languagesData.download_url;
                     }
                 }
-                setRepositories(repositoriesData);
+                setRepositories(updaterepositoriesData);
             } catch (error) {
                 console.error(error);
             }

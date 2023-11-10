@@ -15,8 +15,10 @@ interface CardProjectProps{
 
 export default function CardProject(props:CardProjectProps) {
 
+  console.log(props.Stacks);
   function StackElement({ name }: { name: string }) {
-    const Icon = DivIcons[name] || DivIcons.default;
+    const Icon = DivIcons[name] || <a/>;
+
     return <Icon />;
   }
 
@@ -27,13 +29,19 @@ export default function CardProject(props:CardProjectProps) {
             <Title>{props.Title}</Title>
         </CardTitle>
         <Stacks className="cpName">
-          {props.Stacks.map((stack, index) => (
-            <div className="IndividualStack" key={index} style={{backgroundColor: DivIconsColor[stack.Name] || DivIconsColor.default}}>
-              <StackElement name={stack.Name} />
-              <StackName>{stack.Name}</StackName>
-            </div>
-          ))}
-        </Stacks>
+        {props.Stacks.map((stack, index) => {
+          if (DivIcons[stack]) {
+            return (
+              <div className="IndividualStack" key={index} style={{ backgroundColor: DivIconsColor[stack] || DivIconsColor.default }}>
+                <StackElement name={stack} />
+                <StackName>{stack}</StackName>
+              </div>
+            );
+          } else {
+            return null;
+          }
+        })}
+      </Stacks>
         <CardImg className="cpImage">
             <img src={props.Image} alt={props.Title + ' Logo'}/>
         </CardImg>
